@@ -1,0 +1,9 @@
+#ignoring all class files
+*.class
+*.iml
+
+#ignoring folders of intelliJ
+/api/.idea/
+/api/out/
+/api/target/
+
