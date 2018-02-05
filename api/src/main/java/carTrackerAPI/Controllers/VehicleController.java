@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 public class VehicleController {
@@ -24,5 +26,11 @@ public class VehicleController {
         }else {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @RequestMapping(value = "/getVehicles", method = RequestMethod.GET)
+    public List<Vehicle> getVehicleData(){
+        List<Vehicle> vehicles=vehicleService.getVehicleData();
+        return vehicles;
     }
 }

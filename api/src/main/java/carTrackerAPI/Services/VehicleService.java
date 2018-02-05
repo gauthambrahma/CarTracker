@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class VehicleService {
 
@@ -25,5 +28,13 @@ public class VehicleService {
             vehicleRepository.save(vehicleObj);
         }
         return true;
+    }
+
+    public List<Vehicle> getVehicleData(){
+        List<Vehicle> vehicleList=new ArrayList<Vehicle>();
+        for (Vehicle v:vehicleRepository.findAll()) {
+         vehicleList.add(v);
+        }
+        return vehicleList;
     }
 }
