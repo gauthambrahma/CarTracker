@@ -1,0 +1,17 @@
+{
+  "name": "client",
+  "homepage": "",
+  "authors": [
+    "gautham brahma ponnaganti <gauthamponnaganti@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

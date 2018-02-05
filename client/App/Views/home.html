@@ -1,0 +1,24 @@
+
+<div class="container-fluid">
+<div class="row" >
+    <div class="col-lg-4 vehicle-card" ng-repeat="vehicle in vehicleData">
+        <div class="card" style="width: 20rem;">
+            <!--<img class="card-img-top" height="200"  src="Resources/images/light-car-inside-black.jpg" alt="Card image cap">-->
+            <div class="card-block">
+                <h4 class="card-title">{{vehicle.make}}&nbsp {{vehicle.model}}&nbsp{{vehicle.year}}</h4>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Vin - {{vehicle.vin}}</li>
+                    <li class="list-group-item">make - {{vehicle.make}}</li>
+                    <li class="list-group-item">model - {{vehicle.model}}</li>
+                    <li class="list-group-item">year - {{vehicle.year}}</li>
+                    <li class="list-group-item">redlineRpm - {{vehicle.redlineRpm }}</li>
+                    <li class="list-group-item">maxFuelVolume - {{vehicle.maxFuelVolume}}</li>
+                    <li class="list-group-item">lastServiceDate - {{vehicle.lastServiceDate}}</li>
+                </ul>
+                <br />
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
