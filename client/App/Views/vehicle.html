@@ -1,0 +1,28 @@
+<ul class="nav nav-tabs nav-justified">
+    <li class="nav-item">
+        <a class="nav-link active" data-target="#locationHistory" data-toggle="tab" >Location History</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" role="button" aria-haspopup="true" aria-expanded="false">Vehicle Details</a>
+        <div class="dropdown-menu dropdown-menu-width">
+            <a class="dropdown-item" data-target="#">Action</a>
+            <a class="dropdown-item" data-target="#">Another action</a>
+            <a class="dropdown-item" data-target="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" data-target="#">Separated link</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-target="#historicAlerts" data-toggle="tab" >Historic Alerts</a>
+    </li>
+</ul>
+
+<div class="tab-content clearfix vehicle-content-display-area row">
+    <div class="tab-pane active col-lg-10 offset-lg-1" id="locationHistory">
+        <div id="map-canvas" ng-init="initMap()">
+        </div>
+    </div>
+    <div class="tab-pane" id="historicAlerts">
+        HistoricAlerts
+    </div>
+</div>

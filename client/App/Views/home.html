@@ -1,24 +1,79 @@
 
-<div class="container-fluid">
-<div class="row" >
-    <div class="col-lg-4 vehicle-card" ng-repeat="vehicle in vehicleData">
-        <div class="card" style="width: 20rem;">
-            <!--<img class="card-img-top" height="200"  src="Resources/images/light-car-inside-black.jpg" alt="Card image cap">-->
-            <div class="card-block">
-                <h4 class="card-title">{{vehicle.make}}&nbsp {{vehicle.model}}&nbsp{{vehicle.year}}</h4>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Vin - {{vehicle.vin}}</li>
-                    <li class="list-group-item">make - {{vehicle.make}}</li>
-                    <li class="list-group-item">model - {{vehicle.model}}</li>
-                    <li class="list-group-item">year - {{vehicle.year}}</li>
-                    <li class="list-group-item">redlineRpm - {{vehicle.redlineRpm }}</li>
-                    <li class="list-group-item">maxFuelVolume - {{vehicle.maxFuelVolume}}</li>
-                    <li class="list-group-item">lastServiceDate - {{vehicle.lastServiceDate}}</li>
-                </ul>
-                <br />
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="container-fluid default-background">
+    <div class="row search-bar-container">
+        <form class="bd-search hidden-sm-down col-lg-6 offset-lg-3">
+            <input type="text" class="form-control" ng-model="search_text" id="search-input" placeholder="Search..." autocomplete="off">
+            <small id="searchDescription" class="form-text text-muted">Search using the vehicle model/name/year/vin or any other detail.</small>
+        </form>
+    </div>
+    <div class="row" >
+        <div class="col-lg-4 vehicle-card" ng-repeat="vehicle in vehicleData| filter:search_text">
+            <div class="card" style="width: 20rem;">
+                <!--<img class="card-img-top" height="200"  src="Resources/images/light-car-inside-black.jpg" alt="Card image cap">-->
+                <div class="card-block vehicle-card-details-header">
+                    <h4 class="card-title">{{vehicle.make}}&nbsp {{vehicle.model}}&nbsp{{vehicle.year}}</h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item row">
+                            <div class="col-lg-12 vehicle-card-details-subheader">
+                                vin
+                            </div>
+                            <div class="col-lg-12 vehicle-card-details-content">
+                                {{vehicle.vin}}
+                            </div>
+                        </li>
+                        <li class="list-group-item row">
+                            <div class="col-lg-12 vehicle-card-details-subheader">
+                                make
+                            </div>
+                            <div class="col-lg-12 vehicle-card-details-content">
+                                {{vehicle.make}}
+                            </div>
+                        </li>
+                        <li class="list-group-item row">
+                            <div class="col-lg-12 vehicle-card-details-subheader">
+                                model
+                            </div>
+                            <div class="col-lg-12 vehicle-card-details-content">
+                                {{vehicle.model}}
+                            </div>
+                        </li>
+                        <li class="list-group-item row">
+                            <div class="col-lg-12 vehicle-card-details-subheader">
+                                year
+                            </div>
+                            <div class="col-lg-12 vehicle-card-details-content">
+                                {{vehicle.year}}
+                            </div>
+                         </li>
+                        <li class="list-group-item row">
+                            <div class="col-lg-12 vehicle-card-details-subheader">
+                                redlineRpm
+                            </div>
+                            <div class="col-lg-12 vehicle-card-details-content">
+                                {{vehicle.redlineRpm}}
+                            </div>
+                         </li>
+                        <li class="list-group-item row">
+                            <div class="col-lg-12 vehicle-card-details-subheader">
+                                maxFuelVolume
+                            </div>
+                            <div class="col-lg-12 vehicle-card-details-content">
+                                {{vehicle.maxFuelVolume}}
+                            </div>
+                        </li>
+                        <li class="list-group-item row">
+                            <div class="col-lg-12 vehicle-card-details-subheader">
+                                lastServiceDate
+                            </div>
+                            <div class="col-lg-12 vehicle-card-details-content">
+                                {{vehicle.lastServiceDate}}
+                            </div>
+                        </li>
+                    </ul>
+                    <br />
+                    <a ng-click="gotoVehicle(vehicle.vin)" class="btn btn-danger button-color-white">View Details</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>

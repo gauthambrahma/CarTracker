@@ -2,3 +2,52 @@
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
+.vehicle-card-details-subheader{
+    color: #828286;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 0;
+}
+
+.vehicle-card-details-content{
+    color: #727276;
+    font-size: 13px;
+    font-weight: 400;
+    height: 19px;
+    line-height: 16px;
+    margin-top: 8px;
+}
+
+.vehicle-card-details-header{
+    color: #828286;
+}
+
+.search-bar-container{
+    padding-top: 10px;
+}
+
+.default-background {
+    background-color: #efefef;
+}
+
+.button-color-white{
+    color: white !important;
+    cursor: pointer;
+}
+
+.dropdown-menu-width{
+    width: 100%;
+}
+
+#locationHistory,#map-canvas{
+    height: 100%;
+}
+
+.vehicle-content-display-area{
+    height: 75vh;
+    width: 100%;
+    padding-top: 5vh;
+}
+
