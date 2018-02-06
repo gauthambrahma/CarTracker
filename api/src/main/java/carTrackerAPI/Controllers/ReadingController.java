@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 public class    ReadingController {
@@ -22,5 +24,11 @@ public class    ReadingController {
         }else {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @RequestMapping(value="/getVehicleDetails", method = RequestMethod.GET)
+    public List<Reading> getVehicleDetails(@RequestParam(value = "vehicle_vin") String vehicle_vin){
+        List<Reading> readings = readingService.getReadingsByvin(vehicle_vin);
+        return readings;
     }
 }

@@ -7,6 +7,8 @@ import carTrackerAPI.Repositories.IReadingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.*;
+
 @Service
 public class ReadingService {
     @Autowired
@@ -35,5 +37,13 @@ public class ReadingService {
         readingRepository.save(readingObj);
         boolean checksuccessful = alertService.checkForAlerts(vehicleData,readingObj);
         return true;
+    }
+
+    public List<Reading> getReadingsByvin(String vehicle_vin) {
+        List<Reading> readingList=new ArrayList<Reading>();
+//        for (Reading r:readingRepository.findAllByvin(vehicle_vin)) {
+//            readingList.add(r);
+//        }
+        return readingRepository.findAllByvin(vehicle_vin);
     }
 }

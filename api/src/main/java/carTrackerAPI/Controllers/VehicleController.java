@@ -33,4 +33,6 @@ public class VehicleController {
         List<Vehicle> vehicles=vehicleService.getVehicleData();
         return vehicles;
     }
+
+
 }

@@ -20,7 +20,7 @@ public class AlertController {
 
     @RequestMapping(value="/getAlerts", method = RequestMethod.POST)
     public ResponseEntity getAlerts(@RequestBody String vin){
-        List<Alert> alerts=alertService.getAlertsForvin(vin);
+        List<Alert> alerts = alertService.getAlertsForvin(vin);
         if(!alerts.isEmpty()) {
             return new ResponseEntity(HttpStatus.OK);
         }else {
