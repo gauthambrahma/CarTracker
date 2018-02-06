@@ -6,6 +6,7 @@
         var vehiclevin = $routeParams.vehiclevin;
         $scope.markers = [];
 
+        //get readings data for a vehicle
         REST_with_params("GET","http://localhost:8080/getVehicleDetails",{"vehicle_vin":vehiclevin},handleVehicleData);
 
         function handleVehicleData(vehicledata) {
@@ -67,15 +68,25 @@
                 }
             }
         }
+
         $scope.initMap = function (){
             var myLatlng = new google.maps.LatLng(41.803194, -88.144406);
 
             var mapOptions = {
-                zoom: 4,
+                zoom: 2,
                 center: myLatlng
             };
 
             $scope.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        }
+
+        //get alert data for a vehicle
+        REST_with_params("GET","http://localhost:8080/getAlerts",{"vehicle_vin":vehiclevin},handleVehicleAlertData);
+
+        function handleVehicleAlertData(vehicleAlertData) {
+            vehicleAlertData.data.map(obj =>obj.timestamp = new Date(obj.timestamp));
+            $scope.alerts=vehicleAlertData.data;
+            console.log(vehicleAlertData);
         }
     }]);
 })();

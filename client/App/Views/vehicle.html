@@ -19,10 +19,31 @@
 
 <div class="tab-content clearfix vehicle-content-display-area row">
     <div class="tab-pane active col-lg-10 offset-lg-1" id="locationHistory">
+        <div class="info-map-instruction"><i>Click on the pin to see details.</i></div>
         <div id="map-canvas" ng-init="initMap()">
         </div>
     </div>
-    <div class="tab-pane" id="historicAlerts">
-        HistoricAlerts
+    <div class="tab-pane col-lg-10 offset-lg-1" id="historicAlerts">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">vin</th>
+                    <th scope="col">Timestamp</th>
+                    <th scope="col">Rule</th>
+                    <th scope="col">Priority</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="alert in alerts" ng-class="{'table-danger':alert.priority=='HIGH','table-warning':alert.priority=='MEDIUM','table-success':alert.priority=='LOW'}">
+                    <th>{{alert.vin}}</th>
+                    <td>{{alert.timestamp|date}}</td>
+                    <td>{{alert.rule}}</td>
+                    <td>{{alert.priority}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+

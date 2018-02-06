@@ -8,6 +8,7 @@
         function handleVehicleData(vehicledata) {
             if(vehicledata.status==200){
                 console.log(vehicledata.data);
+                vehicledata.data.map(obj =>obj.timestamp = new Date(obj.timestamp));
                 $scope.vehicleData=vehicledata.data;
             }
         }
