@@ -11,6 +11,7 @@ import carTrackerAPI.Entites.AlertMessages;
 
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -66,6 +67,7 @@ public class AlertService {
     }
 
     public List<Alert> getAlertsForvin(String vin){
-        return null;
+        List<Alert> alertList=new ArrayList<Alert>();
+        return alertRepository.findAllByvin(vin);
     }
 }

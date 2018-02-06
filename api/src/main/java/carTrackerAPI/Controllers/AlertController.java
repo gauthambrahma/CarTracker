@@ -18,13 +18,9 @@ public class AlertController {
     @Autowired
     AlertService alertService;
 
-    @RequestMapping(value="/getAlerts", method = RequestMethod.POST)
-    public ResponseEntity getAlerts(@RequestBody String vin){
+    @RequestMapping(value="/getAlerts", method = RequestMethod.GET)
+    public List<Alert> getAlerts(@RequestParam(value = "vehicle_vin") String vin){
         List<Alert> alerts = alertService.getAlertsForvin(vin);
-        if(!alerts.isEmpty()) {
-            return new ResponseEntity(HttpStatus.OK);
-        }else {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return alerts;
     }
 }
