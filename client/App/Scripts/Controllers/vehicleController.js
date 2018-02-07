@@ -1,10 +1,13 @@
 (function(){
     var app=angular.module("CarTracker");
 
-    app.controller('vehicleController',['$scope','$http','$routeParams','$window','REST_with_params',function ($scope,$http,$routeParams,$window,REST_with_params) {
+    app.controller('vehicleController',['$scope','$http','$routeParams','$window','REST_with_params','lastnMinutesReadingData',function ($scope,$http,$routeParams,$window,REST_with_params,lastnMinutesReadingData) {
         //map API key: AIzaSyB03rnwGLDoD_ECO1uxaBf2mKUdpFAM2MY
         var vehiclevin = $routeParams.vehiclevin;
+        $scope.headertext="vin number: "+vehiclevin;
         $scope.markers = [];
+        $scope.signalTypeselected="";
+        $scope.timePeriodselected="";
 
         //get readings data for a vehicle
         REST_with_params("GET","http://localhost:8080/getVehicleDetails",{"vehicle_vin":vehiclevin},handleVehicleData);
@@ -14,17 +17,7 @@
                 //converting timestamp to human readable form
                 vehicledata.data.map(obj =>obj.timestamp = new Date(obj.timestamp));
                 $scope.vehicleReadingsData=vehicledata.data;
-                //sorting data by timestamp starting from latest time
-                $scope.vehicleReadingsData.sort((a,b)=> (b.timestamp-a.timestamp));
-                var latestTimeStamp=$scope.vehicleReadingsData[0].timestamp;
-                var lastHalfHour=$scope.vehicleReadingsData.filter(obj=>{
-                    var difference=latestTimeStamp-obj.timestamp;
-                    var minutesDifference = Math.floor(difference/1000/60);
-                    if(minutesDifference>40){
-                        return false;
-                    }
-                    return true;
-                });
+                var lastHalfHour=lastnMinutesReadingData($scope.vehicleReadingsData,"timestamp",30);
                 //plotting points on google maps
                 for(var i=0;i<lastHalfHour.length;i++){
                     var obj = lastHalfHour[i];
@@ -86,7 +79,59 @@
         function handleVehicleAlertData(vehicleAlertData) {
             vehicleAlertData.data.map(obj =>obj.timestamp = new Date(obj.timestamp));
             $scope.alerts=vehicleAlertData.data;
-            console.log(vehicleAlertData);
+        }
+
+        $scope.setSignalparam=function (signalType) {
+            $scope.signalTypeselected=signalType;
+        }
+
+        $scope.setTimeParamparam=function (timePeriod) {
+            $scope.timePeriodselected=timePeriod;
+        }
+
+        $scope.visualize=function () {
+            if($scope.signalTypeselected=="" || $scope.timePeriodselected==""){
+                alert("Please make a selection");
+                return false;
+            }
+            var dataToVisualize=lastnMinutesReadingData($scope.vehicleReadingsData,"timestamp",$scope.timePeriodselected);
+            console.log(dataToVisualize);
+
+            $scope.readingsChartOptions = {
+                chart: {
+                    type: 'lineChart',
+                    height: 450,
+                    margin: {
+                        top: 20,
+                        right: 20,
+                        bottom: 40,
+                        left: 55
+                    },
+                    x: function(d){ return d.x; },
+                    y: function(d){ return d.y; },
+                    useInteractiveGuideline: true,
+                    xAxis: {
+                        axisLabel: 'Time',
+                        tickFormat: function (d) {
+                            return d3.time.format("%B %Y")(new Date(d));
+                        }
+                    },
+                    yAxis: {
+                        axisLabel: 'quantity',
+                        axisLabelDistance: -10
+                    }
+                }
+            };
+            $scope.chartData=[]
+            for(var i=0;i<dataToVisualize.length;i++){
+                $scope.chartData.push({x:dataToVisualize[i].timestamp,y:dataToVisualize[i][$scope.signalTypeselected]});
+            }
+            $scope.readingsChartData= [{
+                key: vehiclevin,
+                color: 'red',
+                values: $scope.chartData,
+                area: true
+            }];
         }
     }]);
 })();

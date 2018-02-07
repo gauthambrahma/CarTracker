@@ -1,16 +1,10 @@
+<h4 class="header text-center details-header-text">{{headertext}}</h4>
 <ul class="nav nav-tabs nav-justified">
     <li class="nav-item">
         <a class="nav-link active" data-target="#locationHistory" data-toggle="tab" >Location History</a>
     </li>
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" role="button" aria-haspopup="true" aria-expanded="false">Vehicle Details</a>
-        <div class="dropdown-menu dropdown-menu-width">
-            <a class="dropdown-item" data-target="#">Action</a>
-            <a class="dropdown-item" data-target="#">Another action</a>
-            <a class="dropdown-item" data-target="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" data-target="#">Separated link</a>
-        </div>
+    <li class="nav-item">
+        <a class="nav-link" data-target="#signalHistory" data-toggle="tab" >Signal History</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" data-target="#historicAlerts" data-toggle="tab" >Historic Alerts</a>
@@ -22,6 +16,52 @@
         <div class="info-map-instruction"><i>Click on the pin to see details.</i></div>
         <div id="map-canvas" ng-init="initMap()">
         </div>
+    </div>
+    <div class="tab-pane col-lg-10 offset-lg-1 row" id="signalHistory">
+        <!--<div class="col-lg-12 row">-->
+            <!--<div class="col-lg-4 text-vehicle-signal-history-1">Select signal type:</div>-->
+            <!--<div class="col-lg-4 offset-lg-2 text-vehicle-signal-history-2">Select time period:</div>-->
+        <!--</div>-->
+        <!--<div class="col-lg-12 row">-->
+            <!--<div class="btn-group col-lg-4" role="group" aria-label="Basic example">-->
+                <!--<button type="button" class="btn btn-secondary" ng-click="setSignalparam('fuelVolume')">fuelVolume</button>-->
+                <!--<button type="button" class="btn btn-secondary" ng-click="setSignalparam('speed')">speed</button>-->
+                <!--<button type="button" class="btn btn-secondary" ng-click="setSignalparam('engineHp')">engineHp</button>-->
+                <!--<button type="button" class="btn btn-secondary" ng-click="setSignalparam('engineRpm')">engineRpm</button>-->
+                <!--<button type="button" class="btn btn-secondary" ng-click="setSignalparam('tires')">tires</button>-->
+            <!--</div> ng-click=""param-->
+            <!--<div class="btn-group col-lg-4 offset-lg-1" role="group" aria-label="Basic example">-->
+                <!--<button type="button" class="btn btn-secondary" ng-click="setTimeParamparam(15)">15mins</button>-->
+                <!--<button type="button" class="btn btn-secondary" ng-click="setTimeParamparam(30)">30mins</button>-->
+                <!--<button type="button" class="btn btn-secondary" ng-click="setTimeParamparam(2*60)">2hours</button>-->
+                <!--<button type="button" class="btn btn-secondary" ng-click="setTimeParamparam(5*60)">5hours</button>-->
+                <!--<button type="button" class="btn btn-secondary" ng-click="setTimeParamparam(-1)">more than 5 hours</button>-->
+            <!--</div>-->
+        <!--</div>-->
+        <form class="col-lg-6 offset-lg-3">
+            <div class="form-group">
+                <label for="timePeriodSelect">Select Time Period</label>
+                <select id="timePeriodSelect" class="form-control" ng-model="timePeriodselected">
+                    <option value=15>15 minutes</option>
+                    <option value=30>30 minutes</option>
+                    <option value=2*60>2 hours</option>
+                    <option value=5*60>5 hours</option>
+                    <option value=-1>more than 5 hours</option>
+                </select>
+                <br />
+                <label for="signalTypeSelect">Select Signal</label>
+                <select id="signalTypeSelect" class="form-control" ng-model="signalTypeselected">
+                    <option value="fuelVolume" >fuelVolume</option>
+                    <option value="speed">speed</option>
+                    <option value="engineHp">engineHp</option>
+                    <option value="engineRpm">engineRpm</option>
+                    <option value="tires">tires</option>
+                </select>
+                <br />
+                <button type="button" class="btn btn-danger" ng-click="visualize()">Visualize</button>
+            </div>
+        </form>
+        <nvd3 options="readingsChartOptions" data="readingsChartData"></nvd3>
     </div>
     <div class="tab-pane col-lg-10 offset-lg-1" id="historicAlerts">
         <div>

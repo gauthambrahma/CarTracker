@@ -1,6 +1,7 @@
 (function () {
     var app=angular.module('CarTracker',[
-        'ngRoute'
+        'ngRoute',
+        'nvd3'
     ]);
 
     app.config(function ($routeProvider) {
