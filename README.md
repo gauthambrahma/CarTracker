@@ -1,3 +1,5 @@
+IoT Pet project. Objective was to get my hands dirty with Java Spring framework.
+
 ## application walkthrough:
 home page contains details of all vehicle as shown in the screenshots below. Full details can be seen by clicking on the *view details* button.
 
